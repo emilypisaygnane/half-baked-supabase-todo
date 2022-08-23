@@ -18,13 +18,14 @@ const deleteButton = document.querySelector('.delete-button');
 todoForm.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    const formData = new FormData('todo');
+    const data = new FormData(todoForm);
 
-    const todo = formData.get('todo'); 
+    const todo = data.get('todo'); 
 
     await createTodo(todo);
 
     todoForm.reset();
+    
     displayTodos();
 });
 
@@ -34,21 +35,21 @@ async function displayTodos() {
     todosEl.innerHTML = '';
 
     for (let todo of todos) {
-        const todoEl = renderTodo(todo);
+        const todoList = renderTodo(todo, handleComplete);
 
-        todoEl.addEventListener('click', async () => {
-            await completeTodo(todo.id);
-
-            displayTodos();
-        });
-
-        todosEl.append(todoEl);
+        todosEl.append(todoList);
     }
 }
+async function handleComplete(todo) {
+    await completeTodo(todo.id);
 
-window.addEventListener('load', async () => {
     displayTodos();
-});
+}
+async function onLoad() {
+    await getTodos();
+    displayTodos();
+}
+onLoad();
 
 logoutButton.addEventListener('click', () => {
     logout();

@@ -1,17 +1,17 @@
 export function renderTodo(todo, handleComplete) {
-    const div = document.createElement('div');
+    const todoDiv = document.createElement('div');
     const p = document.createElement('p');
 
-    div.classList.add(todo.complete ? 'complete' : 'incomplete');
+    todoDiv.classList.add(todo.complete ? 'complete' : 'incomplete');
 
-    div.classList.add('todo');
+    todoDiv.classList.add('todo');
 
     p.textContent = todo.todo;
 
-    div.append(p);
+    todoDiv.append(p);
 
-    handleComplete.addEventListener('click', () => {
-        handleComplete();
+    todoDiv.addEventListener('click', () => {
+        handleComplete(todo);
     });
-    return handleComplete();
+    return todoDiv;
 }
