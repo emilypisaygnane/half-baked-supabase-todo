@@ -31,7 +31,7 @@ todoForm.addEventListener('submit', async (e) => {
 async function displayTodos() {
     const todos = await getTodos();
 
-    todosEl.textContent = '';
+    todosEl.innerHTML = '';
 
     for (let todo of todos) {
         const todoEl = renderTodo(todo);
