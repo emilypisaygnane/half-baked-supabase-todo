@@ -44,17 +44,16 @@ async function displayTodos() {
     }
 }
 
-// add page load function
-    // fetch the todos and store in state
-    // call displayTodos
+window.addEventListener('load', async() => {
+    displayTodos();
+});
 
 logoutButton.addEventListener('click', () => {
     logout();
 });
 
-
 deleteButton.addEventListener('click', async() => {
-    // delete all todos
-    // modify state to match
-    // re displayTodos
+    await deleteAllTodos();
+
+    displayTodos;
 });
